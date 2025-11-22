@@ -5,7 +5,6 @@ import {
     TextInput, 
     TouchableOpacity, 
     StyleSheet, 
-    SafeAreaView,
     KeyboardAvoidingView,
     Platform,
     Alert,
@@ -14,6 +13,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/useAuth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type RootStackParamList = {
     Login: undefined;
@@ -52,7 +52,6 @@ export function RegisterScreen() {
             await register(name, email, password);
             
             console.log("Register success, navigating to Home"); // DEBUG
-            navigation.navigate("Home");
         } catch (error: any) {
             console.log("Register failed", error);
             Alert.alert("Register Failed", error.message || "Unknown error");

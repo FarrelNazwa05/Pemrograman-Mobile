@@ -5,7 +5,6 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
-    SafeAreaView,
     KeyboardAvoidingView,
     Platform,
     Alert
@@ -13,6 +12,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAuth } from '../hooks/useAuth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type RootStackParamList = {
     Login: undefined;
@@ -34,13 +34,11 @@ export function LoginScreen() {
                 Alert.alert('Error', 'Please fill in all fields');
                 return;
             }
-    
             
-            console.log("Attempting to login:", { name, email }); // DEBUG
+            console.log("Attempting to login:", { email }); // DEBUG
             await login(email, password);
 
             console.log("Login success, navigating to Home"); // DEBUG
-            navigation.navigate("Home");
         } catch (error: any) {
             console.log("Login failed", error);
             Alert.alert("Login Failed", error.message || "Unknown error");
